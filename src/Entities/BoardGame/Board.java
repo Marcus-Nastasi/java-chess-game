@@ -19,7 +19,6 @@ public class Board {
     public int getRows() {
         return rows;
     }
-
     public int getColumns() {
         return columns;
     }
@@ -53,7 +52,17 @@ public class Board {
         if(!positionExists(position)) throw new BoardException("Error: position not on the board.");
         return getPiece(position) != null;
     }
-}
 
+    public Piece removePiece(Position position) throws BoardException {
+        if(!positionExists(position)) throw new BoardException("Position out of the board.");
+        if(getPiece(position) == null) return null;
+
+        Piece aux = getPiece(position);
+        aux.position = null;
+        pieces[position.getRow()][position.getColumn()] = null;
+
+        return aux;
+    }
+}
 
 
